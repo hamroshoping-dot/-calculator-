@@ -1,0 +1,195 @@
+/* ---------- ULTRA FUTURISTIC NEON + GLASS UI ---------- */
+:root{
+  --glass-bg: rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.18);
+  --neon1: #00eaff;
+  --neon2: #b400ff;
+  --text: #e9faff;
+  --radius: 16px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* body + centering */
+body{
+  height: 100vh;
+  background: radial-gradient(circle at top left, #0a0430, #02010f 75%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  color:var(--text);
+}
+
+/* ---------- GLASS CARD ---------- */
+.card{
+  width:100%;
+  max-width:340px;
+  padding:28px;
+  border-radius: var(--radius);
+  backdrop-filter: blur(18px) saturate(160%);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 25px rgba(41, 88, 88, 0.25), 0 0 45px rgba(180,0,255,0.18);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+h1{
+  text-align:center;
+  margin-top:0;
+  margin-bottom:14px;
+  font-size:22px;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(0,255,255,0.4), 0 0 18px rgba(180,0,255,0.4);
+}
+
+/* ---------- FIELDS ---------- */
+.field{
+  display:flex;
+  flex-direction:column;
+  margin-bottom:18px;
+}
+
+label{
+  font-size:14px;
+  margin-bottom:6px;
+  opacity:0.85;
+}
+
+input, select{
+  padding:14px;
+  border-radius: var(--radius);
+  border:1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.06);
+  color:white;
+  font-size:15px;
+  transition:0.25s;
+}
+
+input:focus, select:focus{
+  border-color: var(--neon1);
+  box-shadow:0 0 12px rgba(0,255,255,0.35);
+  outline:none;
+}
+
+/* ---------- BUTTONS ---------- */
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border-radius: var(--radius);
+  border:0;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2));
+  color:black;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.28s;
+  box-shadow:0 0 12px rgba(0,255,255,0.35);
+}
+
+button:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(0,255,255,0.55), 0 0 28px rgba(180,0,255,0.45);
+}
+
+button.secondary{
+  background: rgba(255,255,255,0.15);
+  color:var(--text);
+}
+button.secondary:hover{
+  background: rgba(255,255,255,0.28);
+  box-shadow:0 0 15px rgba(255,255,255,0.15);
+}
+
+/* ---------- BACKDROP (when modal open) ---------- */
+#backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px) saturate(120%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+  z-index: 9997;
+}
+
+/* visible backdrop */
+#backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- RESULT MODAL (centered popup) ---------- */
+#output {
+   max-height: 90vh;
+  overflow-y: auto;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(.96);
+  width: 360px;
+  max-width: calc(100% - 40px);
+  background: linear-gradient(180deg, rgba(69, 160, 107, 0.92), rgba(59, 18, 170, 0.98));
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 20px 18px 16px 18px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(0,255,255,0.04);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease;
+}
+
+#outputInner {
+  max-height: 85vh;
+  overflow-y: auto;
+  padding-right: 10px; /* to avoid cut-off text */
+}
+
+/* visible modal */
+#output.visible {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Close button */
+#output .close {
+  width: 30px;
+  
+  font-size: 18px;
+  background: red;
+  border: none;
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+#output .close:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+
+/* inner message style */
+.sms{
+  border-left:4px solid var(--neon1);
+  padding-left:12px;
+  padding-right: 20px;
+}
+.number{
+  color: var(--neon1);
+  font-weight:700;
+}
+
+/* small screens */
+@media (max-width: 520px){
+  #output { width: min(92%, 420px); padding: 16px; }
+  .card{ max-width: 420px; }
+}

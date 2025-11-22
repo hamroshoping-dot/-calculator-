@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ne">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Futuristic Loan Calculator (NEP)</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+<!-- Card with inputs -->
+<div class="card" id="card">
+  <h1>मेरो सजिलो Calculator</h1>
+
+  <!-- INPUTS -->
+  <div class="field">
+    <label>ऋण रकम (Principal)</label>
+    <input id="principal" type="number" value="500000">
+  </div>
+
+  <div class="field">
+    <label>वार्षिक ब्याजदर (%)</label>
+    <select id="rate">
+      <option value="10">10%</option>
+      <option value="15" selected>15%</option>
+      <option value="20">20%</option>
+      <option value="25">25%</option>
+      <option value="30">30%</option>
+      <option value="35">35%</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>अवधि</label>
+    <input id="tenure" type="number" value="5">
+  </div>
+
+  <div class="field">
+    <label>अवधि छनौट</label>
+    <select id="unit">
+      <option value="years" selected>वर्ष</option>
+      <option value="months">महिना</option>
+    </select>
+  </div>
+
+  <!-- ACTIONS -->
+  <button id="btn-si">Simple Interest</button>
+  <button class="secondary" id="btn-emi">EMI (मासिक किस्ता)</button>
+  <button class="secondary" id="btn-reset">रिसेट</button>
+</div>
+
+<!-- Backdrop and Modal -->
+<div id="backdrop" aria-hidden="true"></div>
+
+<div id="output" aria-live="polite" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+  <div id="outputInner"></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
